@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+  <div class="col col-sm-6">
+    <h1 class="text-center">Join Us</h1>
+<h2 class="text-center">Enroll yourself, register here</h2>
+<form method="POST" action="/register">
+
+
+    <div class="input-group mb-3">  
+    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-circle"></i></span> 
+  <input type="text" name="username" class="form-control {{#if errors.username}}alert-danger{{/if}}"  placeholder="Type your username. {{#if errors.username}}{{errors.username}}{{/if}} " aria-describedby="Username" aria-describedby="Type your username" value="{{user.username}}">
+  
+</div>
+<div class="input-group mb-3">  
+    <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span> 
+  <input type="text" name="email" class="form-control {{#if errors.email}}alert-danger{{/if}}"  placeholder="Insert your email adress. {{#if errors.email}}{{errors.email}}{{/if}} " aria-describedby="Email" aria-describedby="Insert your email adress" value="{{user.email}}">
+  
+</div>
+<div class="input-group mb-1">
+    <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>  
+  <input type="password" name="password" class="form-control {{#if errors.password}}alert-danger{{/if}}"  placeholder="Please select your password. {{#if errors.password}}{{errors.password}}{{/if}} " aria-describedby="Password" aria-describedby="Please select your password. Must be at least 8 characters">
+  
+</div> 
+{{#if errorMessage}}
+    <p class="btn-danger p-3 text-center">{{errorMessage}}</p>
+  {{/if}}
+  <div class="col-auto  text-center">
+    <button type="submit" class="btn btn-primary mb-3 m-4">Register!</button>
+  </div>
+</form>
+</div>
+</div>
