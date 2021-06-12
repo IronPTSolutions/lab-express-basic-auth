@@ -7,6 +7,7 @@ const PASSWORD_PATTERN = /^.{8,}$/i;
 const userSchema = new Schema({
   username: {
     type: String,
+    unique: false,
     required:'Username is requiered',
     minLength: 3
   },
