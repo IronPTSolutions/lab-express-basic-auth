@@ -8,16 +8,24 @@ module.exports.register = (req, res, next) => {
 }
 
 module.exports.doRegister = (req, res, next) => {
+
+    function renderWithErrors(errors) {
+        res.render('auth/register', {
+          user: req.body,
+          errors: errors
+        });
+      }
+
     User
     .findOne({email: req.body.email})
     .then(user => {
         if (user) {
-            res.render('auth/register', {
-                errors: {
-                    user: req.body,
-                    email: 'This email have already been registered'
-                }
-            })           
+
+            renderWithErrors({ 
+                email: 'This email have already been registered',
+                duplicated: 'This email have already been registered' 
+             })
+                  
         } else {
             user = {username, email, password} = req.body
             return User.create(user)
@@ -29,9 +37,9 @@ module.exports.doRegister = (req, res, next) => {
     })
     .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
-            res.render('auth/register' , {
-                errors: error.errors
-            })
+
+           renderWithErrors(error.errors);
+           
         } else {
             next(error)
         }
@@ -59,7 +67,8 @@ module.exports.doLogin = (req, res, next) => {
             user: req.body,
             errors: {
                 email: 'Invalid mail or password',
-                password: 'Invalid mail or password'
+                password: 'Invalid mail or password',
+                invalidSession: 'Invalid mail or password'
             }
         })
     }

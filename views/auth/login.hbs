@@ -18,6 +18,10 @@
         <p class="btn-danger p-3 text-center">{{errorMessage}}</p>
       {{/if}}
 
+      {{#if errors.invalidSession}}
+        <p class="btn-danger p-3 text-center">{{errors.invalidSession}}</p>
+      {{/if}}
+
       <div class="col-auto  text-center">
         <button type="submit" class="btn btn-primary mb-3 m-4">Log in</button>
       </div>
