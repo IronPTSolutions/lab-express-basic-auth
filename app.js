@@ -12,7 +12,7 @@ const logger = require('morgan');
 
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser'); => obsoleto
 
 const app = express();
 
@@ -22,6 +22,11 @@ require('./config/db.config');
 // In development environment the app logs
 app.use(logger('dev'));
 
+//SESSION
+const { sessionConfig, loadUser } = require('./config/session.config') //importa argumento
+app.use(sessionConfig);
+app.use(loadUser)
+
 
 /** VIEWS ENGINE SETUP */
 // Normalizes the path to the views folder
@@ -29,6 +34,8 @@ app.set('views', `${__dirname}/views`);
 // Sets the view engine to handlebars
 app.set('view engine', 'hbs');
 // Handles access to the public folder
+require('./config/hbs.config');
+
 app.use(express.static(`${__dirname}/public`));
 
 
@@ -36,7 +43,7 @@ app.use(express.static(`${__dirname}/public`));
 // To have access to `body` property in the request
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser()); => obsoleto
 
 /** ROUTES SETUP */
 

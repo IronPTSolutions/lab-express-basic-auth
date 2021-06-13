@@ -9,17 +9,28 @@ a {
   color: #00B7FF;
 }
 
-.input-group-text{
+.input-group-text {
   color: #00B7FF;
   background-color: #fff;
 }
 
-h1{
+h1 {
   font-size: 6rem;
   color: #fff;
   text-align: center;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #00B7FF;
+}
+
+.bg-nav-custom {
+  background-color: transparent;
+  border: thin solid #fff;
+  margin-bottom: 2%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
 }
