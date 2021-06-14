@@ -14,6 +14,8 @@ const logger = require('morgan');
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require('cookie-parser');
 
+const hbs = require('hbs');
+
 const app = express();
 
 /** APP CONFIGURATION */
@@ -22,6 +24,8 @@ require('./config/db.config');
 // In development environment the app logs
 app.use(logger('dev'));
 
+//REGISTER PARTIALS
+hbs.registerPartials(`${__dirname}/./views/partials`);
 
 /** VIEWS ENGINE SETUP */
 // Normalizes the path to the views folder
@@ -37,6 +41,10 @@ app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+const { sessionConfig, loadUser } = require('./config/session.config');
+app.use(sessionConfig);
+app.use(loadUser);
 
 /** ROUTES SETUP */
 
