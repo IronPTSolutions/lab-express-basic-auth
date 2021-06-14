@@ -42,6 +42,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+const { sessionConfig, loadUser } = require('./config/session.config');
+app.use(sessionConfig);
+app.use(loadUser);
+
 /** ROUTES SETUP */
 
 // default value for title local
