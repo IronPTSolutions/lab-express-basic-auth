@@ -35,6 +35,13 @@ userSchema.pre('save', function (next) {
   }
 });
 
+userSchema.methods.checkPassword = function (passwordToCheck){
+  return bcrypt.compare(passwordToCheck, this.password);
+}
+
+//va con return para usarla en el conrolador entre en el flujo de la promesa
+//es una función que voy a usar en el controlador
+//con methods estoy añadiendo este nuevo método a users
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

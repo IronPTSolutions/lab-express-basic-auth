@@ -9,4 +9,9 @@ router.get('/', common.home);
 router.get('/register', auth.register);
 router.post('/register', auth.doRegister);
 
+router.get('/login', auth.login);
+router.post('/login', auth.doLogin);
+
+router.get('/logout', auth.logout);//mejor por post
+
 module.exports = router;
