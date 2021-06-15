@@ -16,6 +16,7 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
+require('./config/hbs.config');
 /** APP CONFIGURATION */
 // ℹ️ Connect to the databse
 require('./config/db.config');
@@ -38,12 +39,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//evaluar si la cookie de sesión es buena, va al sig use para buscar a ese usuario
+const { sessionConfig, loadUser } = require('./config/session.config');
+app.use(sessionConfig);
+app.use(loadUser);
+
+
 /** ROUTES SETUP */
 
 // default value for title local
 const projectName = 'lab-express-basic-auth';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
+
 
 // 👇 Start handling routes here
 const routes = require('./config/routes.config');
