@@ -16,7 +16,7 @@ module.exports.sessionConfig = expressSession({
     },    
     store: MongoStore.create({
         mongoUrl: mongoose.connection._connectionString, //url Momgo
-        ttl: 24 * 3600 * sessionMaxAge //tiempo que dura conexion Mongo en segundos
+        ttl: 24 * 3600 * sessionMaxAge //tiempo que dura conexion a BD Mongo en segundos
     })
 
 })

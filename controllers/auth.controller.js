@@ -31,7 +31,7 @@ module.exports.doRegister = (req, res, next) => {
             return User.create(user)
                 .then(user => {
                     req.session.userId = user.id;
-                    res.redirect('/user-registered')
+                    res.redirect('/main')
                 })
         }
     })
