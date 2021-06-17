@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p class="text-center">Welcome to {{title}}</p>
+
+<div class="row row-cols-lg-5 justify-content-center">
+    {{#if currentUser }}
+    <a href="/logout" class="btn btn-primary mb-3 m-4 tex-center">LOGOUT</a>
+    {{else}}
+    <a href="/register" class="btn btn-primary mb-3 m-4 tex-center">REGISTER</a>
+    <a href="/login" class="btn btn-primary mb-3 m-4 tex-center">LOG IN</a>
+    {{/if}}
+</div>
