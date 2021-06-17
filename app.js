@@ -23,11 +23,18 @@ require('./config/db.config');
 app.use(logger('dev'));
 
 
+
+const {sessionConfig, loadUser} = require('./config/session.config')
+app.use(sessionConfig)
+app.use(loadUser)
+
+
 /** VIEWS ENGINE SETUP */
 // Normalizes the path to the views folder
 app.set('views', `${__dirname}/views`);
 // Sets the view engine to handlebars
 app.set('view engine', 'hbs');
+require('./config/hbs.config')
 // Handles access to the public folder
 app.use(express.static(`${__dirname}/public`));
 
